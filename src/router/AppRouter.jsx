@@ -21,11 +21,22 @@ export const AppRouter = () => {
     {
       //Si estoy autenticado solo van a existir estas rutas
       (status === 'authenticated') 
-      ? <Route path="/*" element={ <JournalRoutes /> } /> /* Cualquier entrada desde diferente a auth va a entrar en el elemento definido */
-      : <Route path="/auth/*" element={ <AuthRoutes /> }/> /* Cualquier entrada desde auth va a mostrar el elemento definido */
+      ? (
+        <>
+          <Route path="/" element={ <JournalRoutes /> } /> 
+          <Route path="/*" element={ <Navigate to="/" /> } />
+        </>
+      ) 
+      : (
+        <>
+          <Route path="/auth/*" element={ <AuthRoutes /> }/> 
+          <Route path="/*" element={ <Navigate to="/auth/login" /> }/> 
+        </>
+      ) 
+      
     }
 
-    <Route path='/*' element={ <Navigate to='/auth/login' /> } />
+    {/* <Route path='/*' element={ <Navigate to='/auth/login' /> } /> */}
 
         {/* Login y Registro */}
         {/* <Route path="/auth/*" element={ <AuthRoutes /> }/> /* Cualquier entrada desde auth va a mostrar el elemento definido */}

@@ -20,17 +20,17 @@ export const AppRouter = () => {
 
     {
       //Si estoy autenticado solo van a existir estas rutas
-      (status === 'authenticated') 
+      status === 'not-authenticated'
       ? (
         <>
-          <Route path="/" element={ <JournalRoutes /> } /> 
-          <Route path="/*" element={ <Navigate to="/" /> } />
+          <Route path="/auth/*" element={ <AuthRoutes /> }/> 
+          <Route path="/*" element={ <Navigate to="/auth/*" /> }/> 
         </>
       ) 
       : (
         <>
-          <Route path="/auth/*" element={ <AuthRoutes /> }/> 
-          <Route path="/*" element={ <Navigate to="/auth/login" /> }/> 
+          <Route path="/" element={ <JournalRoutes /> } /> 
+          <Route path="/*" element={ <Navigate to="/" /> } />
         </>
       ) 
       

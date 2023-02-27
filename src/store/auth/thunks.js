@@ -18,7 +18,7 @@ export const startGoogleSignIn = () => {
         dispatch( checkingCredentials() );
         console.log('antes de result')
         const result = await signInWithGoogle();
-        console.log('despues de result')
+        console.log('despues de result', result)
         if ( !result.ok ) return dispatch( logout( result.errorMessage ) );
         dispatch( login( result ) ); // El result es el payload
     }
